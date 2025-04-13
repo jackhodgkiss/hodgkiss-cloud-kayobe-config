@@ -3,7 +3,7 @@
 # Grafana configuration.
 
 # Grafana local admin user name.
-#grafana_local_admin_user_name:
+grafana_local_admin_user_name: grafana
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
