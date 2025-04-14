@@ -5,18 +5,18 @@ osds
 rgws
 
 [mgrs]
-cmpt-01.infra.os.hodgkiss.cloud
-cmpt-02.infra.os.hodgkiss.cloud
-cmpt-03.infra.os.hodgkiss.cloud
+cmpt-01.pi.os.infra.hodgkiss.cloud
+cmpt-02.pi.os.infra.hodgkiss.cloud
+cmpt-03.pi.os.infra.hodgkiss.cloud
 
 [mons]
-cmpt-01.infra.os.hodgkiss.cloud
-cmpt-02.infra.os.hodgkiss.cloud
-cmpt-03.infra.os.hodgkiss.cloud
+cmpt-01.pi.os.infra.hodgkiss.cloud
+cmpt-02.pi.os.infra.hodgkiss.cloud
+cmpt-03.pi.os.infra.hodgkiss.cloud
 
 [osds]
-cmpt-01.infra.os.hodgkiss.cloud
-cmpt-02.infra.os.hodgkiss.cloud
-cmpt-03.infra.os.hodgkiss.cloud
+cmpt-01.pi.os.infra.hodgkiss.cloud
+cmpt-02.pi.os.infra.hodgkiss.cloud
+cmpt-03.pi.os.infra.hodgkiss.cloud
 
 [rgws]

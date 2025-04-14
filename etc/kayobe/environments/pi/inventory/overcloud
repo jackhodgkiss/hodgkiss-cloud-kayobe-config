@@ -3,22 +3,22 @@
 localhost ansible_connection=local
 
 [controllers]
-ctrl-01.infra.os.hodgkiss.cloud
+ctrl-01.pi.os.infra.hodgkiss.cloud
 
 [container-image-builders]
-ctrl-01.infra.os.hodgkiss.cloud
+ctrl-01.pi.os.infra.hodgkiss.cloud
 
 [docker-registry]
-ctrl-01.infra.os.hodgkiss.cloud
+ctrl-01.pi.os.infra.hodgkiss.cloud
 
 [monitoring]
-mntr-01.infra.os.hodgkiss.cloud
+mntr-01.pi.os.infra.hodgkiss.cloud
 
 [storage:children]
 ceph
 
 [compute]
-cmpt-01.infra.os.hodgkiss.cloud
-cmpt-02.infra.os.hodgkiss.cloud
-cmpt-03.infra.os.hodgkiss.cloud
-cmpt-04.infra.os.hodgkiss.cloud
+cmpt-01.pi.os.infra.hodgkiss.cloud
+cmpt-02.pi.os.infra.hodgkiss.cloud
+cmpt-03.pi.os.infra.hodgkiss.cloud
+cmpt-04.pi.os.infra.hodgkiss.cloud
