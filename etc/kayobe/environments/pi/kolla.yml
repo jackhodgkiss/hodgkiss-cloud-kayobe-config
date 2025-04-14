@@ -18,6 +18,144 @@ kolla_enable_tls_external: true
 kolla_enable_tls_internal: true
 
 ###############################################################################
+# Kolla image build configuration.
+
+# List of regular expressions matching names of container images to build for
+# overcloud hosts.
+overcloud_container_image_regex_map:
+  - regex: ^aodh
+    enabled: "{{ kolla_enable_aodh | bool }}"
+  - regex: ^barbican
+    enabled: "{{ kolla_enable_barbican | bool }}"
+  - regex: ^blazar
+    enabled: "{{ kolla_enable_blazar | bool }}"
+  - regex: ^ceilometer
+    enabled: "{{ kolla_enable_ceilometer | bool }}"
+  - regex: ^cinder
+    enabled: "{{ kolla_enable_cinder | bool }}"
+  - regex: ^cloudkitty
+    enabled: "{{ kolla_enable_cloudkitty | bool }}"
+  - regex: ^collectd
+    enabled: "{{ kolla_enable_collectd | bool }}"
+  - regex: ^cron
+    enabled: True
+  - regex: ^cyborg
+    enabled: "{{ kolla_enable_cyborg | bool }}"
+  - regex: ^designate
+    enabled: "{{ kolla_enable_designate | bool }}"
+  - regex: ^dnsmasq
+    enabled: "{{ kolla_enable_ironic | bool }}"
+  - regex: ^etcd
+    enabled: "{{ kolla_enable_etcd | bool }}"
+  - regex: ^fluentd
+    enabled: "{{ kolla_enable_fluentd | bool }}"
+  - regex: ^glance
+    enabled: "{{ kolla_enable_glance | bool }}"
+  - regex: ^gnocchi
+    enabled: "{{ kolla_enable_gnocchi | bool }}"
+  - regex: ^grafana
+    enabled: "{{ kolla_enable_grafana | bool }}"
+  - regex: ^hacluster
+    enabled: "{{ kolla_enable_hacluster | bool }}"
+  - regex: ^haproxy$
+    enabled: "{{ kolla_enable_haproxy | bool }}"
+  - regex: ^haproxy-ssh$
+    enabled: "{{ kolla_enable_letsencrypt | bool }}"
+  - regex: ^heat
+    enabled: "{{ kolla_enable_heat | bool }}"
+  - regex: ^horizon
+    enabled: "{{ kolla_enable_horizon | bool }}"
+  - regex: ^influxdb
+    enabled: "{{ kolla_enable_influxdb | bool }}"
+  - regex: ^ironic
+    enabled: "{{ kolla_enable_ironic | bool }}"
+  - regex: ironic-neutron-agent
+    enabled: "{{ kolla_enable_ironic_neutron_agent | bool }}"
+  - regex: ^iscsid
+    enabled: "{{ kolla_enable_iscsid | bool }}"
+  - regex: ^keepalived
+    enabled: "{{ kolla_enable_keepalived | bool }}"
+  - regex: ^keystone
+    enabled: "{{ kolla_enable_keystone | bool }}"
+  - regex: kolla-toolbox
+    enabled: True
+  - regex: ^kuryr
+    enabled: "{{ kolla_enable_kuryr | bool }}"
+  - regex: ^letsencrypt
+    enabled: "{{ kolla_enable_letsencrypt | bool }}"
+  - regex: ^magnum
+    enabled: "{{ kolla_enable_magnum | bool }}"
+  - regex: ^manila
+    enabled: "{{ kolla_enable_manila | bool }}"
+  - regex: ^mariadb
+    enabled: "{{ kolla_enable_mariadb | bool }}"
+  - regex: ^masakari
+    enabled: "{{ kolla_enable_masakari | bool }}"
+  - regex: ^memcached
+    enabled: "{{ kolla_enable_memcached | bool }}"
+  - regex: ^mistral
+    enabled: "{{ kolla_enable_mistral | bool }}"
+  - regex: ^multipathd
+    enabled: "{{ kolla_enable_multipathd | bool }}"
+  - regex: "neutron-\\(server\\|metadata-agent\\)"
+    enabled: "{{ kolla_enable_neutron | bool }}"
+  - regex: "neutron-\\(dhcp\\|l3\\|linuxbridge\\|openvswitch\\)-agent"
+    enabled: "{{ kolla_build_neutron_ovs | default(kolla_enable_neutron | bool and not kolla_enable_ovn | bool) }}"
+  - regex: neutron-mlnx-agent
+    enabled: "{{ kolla_enable_neutron_mlnx | bool }}"
+  - regex: neutron-ovn-agent
+    enabled: "{{ kolla_enable_neutron | bool and kolla_enable_ovn | bool }}"
+  - regex: neutron-sriov-agent
+    enabled: "{{ kolla_enable_neutron_sriov | bool }}"
+  - regex: neutron-bgp-dragent
+    enabled: "{{ kolla_enable_neutron | bool and kolla_enable_neutron_bgp_dragent | bool }}"
+  - regex: ^nova
+    enabled: "{{ kolla_enable_nova | bool }}"
+  - regex: ^octavia
+    enabled: "{{ kolla_enable_octavia | bool }}"
+  - regex: ^opensearch$
+    enabled: "{{ kolla_enable_opensearch | bool }}"
+  - regex: ^opensearch-dashboards$
+    enabled: "{{ kolla_enable_opensearch_dashboards | bool }}"
+  - regex: ^openvswitch
+    enabled: "{{ kolla_enable_openvswitch | bool }}"
+  - regex: ^ovn
+    enabled: "{{ kolla_enable_ovn | bool }}"
+  - regex: ^ovsdpdk
+    enabled: "{{ kolla_enable_ovs_dpdk | bool }}"
+  - regex: ^placement
+    enabled: "{{ kolla_enable_placement | bool }}"
+  - regex: ^prometheus
+    enabled: "{{ kolla_enable_prometheus | bool }}"
+  - regex: ^proxysql
+    enabled: "{{ kolla_enable_proxysql | bool }}"
+  - regex: ^qdrouterd
+    enabled: "{{ kolla_enable_qdrouterd | bool }}"
+  - regex: ^rabbitmq
+    enabled: "{{ kolla_enable_rabbitmq | bool }}"
+  - regex: ^redis
+    enabled: "{{ kolla_enable_redis | bool }}"
+  - regex: ^skyline
+    enabled: "{{ kolla_enable_skyline | bool }}"
+  - regex: ^swift
+    enabled: "{{ kolla_enable_swift | bool }}"
+  - regex: ^tacker
+    enabled: "{{ kolla_enable_tacker | bool }}"
+  - regex: ^telegraf
+    enabled: "{{ kolla_enable_telegraf | bool }}"
+  - regex: ^tgtd
+    enabled: "{{ kolla_enable_cinder | bool or kolla_enable_ironic | bool }}"
+  - regex: ^trove
+    enabled: "{{ kolla_enable_trove | bool }}"
+  - regex: ^watcher
+    enabled: "{{ kolla_enable_watcher | bool }}"
+  - regex: ^zun
+    enabled: "{{ kolla_enable_zun | bool }}"
+
+# Dict mapping Jinja2 block names in kolla's Docker images to their contents.
+#kolla_build_blocks:
+
+###############################################################################
 # Kolla feature flag configuration.
 
 kolla_enable_central_logging: true
