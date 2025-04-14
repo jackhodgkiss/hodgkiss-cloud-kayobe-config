@@ -20,3 +20,10 @@ storage_extra_network_interfaces:
 storage_swap:
   - path: /swapfile
     size_mb: 2048
+
+###############################################################################
+# Storage node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+storage_sysctl_parameters:
+  vm.swappiness: 10
