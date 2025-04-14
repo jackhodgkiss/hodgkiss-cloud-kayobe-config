@@ -50,10 +50,9 @@ internal_vlan: 30
 
 # External network IP information.
 external_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, external_vlan) }}"
-external_allocation_pool_start: "{{ external_cidr | ansible.utils.next_nth_usable(1) }}"
-external_allocation_pool_end: "{{ external_cidr | ansible.utils.next_nth_usable(149) }}"
-external_neutron_allocation_pool_start: "{{ external_cidr | ansible.utils.next_nth_usable(200) }}"
+external_neutron_allocation_pool_start: "{{ external_cidr | ansible.utils.next_nth_usable(150) }}"
 external_neutron_allocation_pool_end: "{{ external_cidr | ansible.utils.next_nth_usable(249) }}"
+external_no_ip: true
 external_vlan: 40
 
 # Public network IP information.
