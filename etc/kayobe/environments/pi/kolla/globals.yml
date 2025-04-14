@@ -18,6 +18,16 @@ designate_ns_record:
   - "franklin.ns.hodgkiss.cloud"
   - "trevor.ns.hodgkiss.cloud"
 
+#############################################################################
+# Monitoring and alerting related settings
+
+prometheus_cmdline_extras: "--storage.tsdb.retention.time=30d"
+
+# Additional command line flags for node exporter to enable texfile collector for disk metrics and create textfile docker volume
+prometheus_node_exporter_extra_volumes:
+  - "textfile:/var/lib/node_exporter/textfile_collector"
+prometheus_node_exporter_cmdline_extras: "--collector.textfile.directory=/var/lib/node_exporter/textfile_collector"
+
 # Expose Prometheus server
 enable_prometheus_server_external: true
 
@@ -32,6 +42,7 @@ prometheus_ceph_mgr_exporter_endpoints:
 # Use inventory hostnames as labels
 prometheus_instance_label: "{% raw %}{{ ansible_facts.hostname }}{% endraw %}"
 
+#############################################################################
 # Expose all external API services on a single port.
 {% raw %}
 haproxy_single_external_frontend: true
