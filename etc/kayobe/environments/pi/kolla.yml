@@ -2,6 +2,13 @@
 # Kayobe Kolla configuration.
 
 ###############################################################################
+# Kolla configuration.
+
+# Kolla base container image distribution version.
+# Default is kolla_base_distro_version_default_map[kolla_base_distro].
+kolla_base_distro_version: noble
+
+###############################################################################
 # Kolla-ansible configuration.
 
 # Whether TLS is enabled for the external API endpoints. Default is 'no'.
