@@ -11,3 +11,5 @@ external_interface: "{{ admin_oc_interface}}.{{ external_vlan }}"
 public_interface: "{{ admin_oc_interface }}.{{ public_vlan }}"
 
 tunnel_interface: "{{ admin_oc_interface }}.{{ tunnel_vlan }}"
+
+storage_interface: "{{ admin_oc_interface }}.{{ storage_vlan }}"
