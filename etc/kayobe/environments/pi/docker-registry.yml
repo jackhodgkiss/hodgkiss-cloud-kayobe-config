@@ -4,6 +4,3 @@
 
 # Whether a docker registry is enabled. Default is false.
 docker_registry_enabled: true
-
-# The port on which the docker registry server should listen. Default is 4000.
-docker_registry_port: 80
