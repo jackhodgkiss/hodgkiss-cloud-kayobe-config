@@ -22,6 +22,8 @@ kolla_neutron_ml2_tenant_network_types:
 kolla_neutron_ml2_network_vlan_ranges:
   - physical_network: "physnet1"
     range: "40:49"
+  - physical_network: "physnet1"
+    range: "80:89"
 
 # List of Neutron ML2 extention drivers to use.
 kolla_neutron_ml2_extension_drivers:

@@ -17,6 +17,7 @@ internal_net_name: internal
 # containing one item, external_net_name.
 external_net_names:
   - external
+  - external_v6
 
 # Name of the network used to expose the public OpenStack API endpoints.
 public_net_name: public
@@ -47,6 +48,7 @@ internal_vip_address: "{{ internal_cidr | ansible.utils.next_nth_usable(253) }}"
 internal_allocation_pool_start: "{{ internal_cidr | ansible.utils.next_nth_usable(1) }}"
 internal_allocation_pool_end: "{{ internal_cidr | ansible.utils.next_nth_usable(149) }}"
 internal_vlan: 30
+internal_mtu: 1500
 
 # External network IP information.
 external_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, external_vlan) }}"
@@ -54,6 +56,7 @@ external_neutron_allocation_pool_start: "{{ external_cidr | ansible.utils.next_n
 external_neutron_allocation_pool_end: "{{ external_cidr | ansible.utils.next_nth_usable(249) }}"
 external_no_ip: true
 external_vlan: 40
+external_mtu: 1500
 
 # Public network IP information.
 public_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, public_vlan) }}"
@@ -61,21 +64,33 @@ public_vip_address: "{{ public_cidr | ansible.utils.next_nth_usable(253) }}"
 public_allocation_pool_start: "{{ public_cidr | ansible.utils.next_nth_usable(1) }}"
 public_allocation_pool_end: "{{ public_cidr | ansible.utils.next_nth_usable(149) }}"
 public_vlan: 50
+public_mtu: 1500
 
 # Tunnel network IP information.
 tunnel_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, tunnel_vlan) }}"
 tunnel_allocation_pool_start: "{{ tunnel_cidr | ansible.utils.next_nth_usable(1) }}"
 tunnel_allocation_pool_end: "{{ tunnel_cidr | ansible.utils.next_nth_usable(149) }}"
 tunnel_vlan: 60
+tunnel_mtu: 1500
 
 # Storage network IP information.
 storage_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, storage_vlan) }}"
 storage_allocation_pool_start: "{{ storage_cidr | ansible.utils.next_nth_usable(1) }}"
 storage_allocation_pool_end: "{{ storage_cidr | ansible.utils.next_nth_usable(149) }}"
 storage_vlan: 70
+storage_mtu: 1500
 
 # Storage management network IP information.
 storage_mgmt_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, storage_mgmt_vlan) }}"
 storage_mgmt_allocation_pool_start: "{{ storage_mgmt_cidr | ansible.utils.next_nth_usable(1) }}"
 storage_mgmt_allocation_pool_end: "{{ storage_mgmt_cidr | ansible.utils.next_nth_usable(149) }}"
 storage_mgmt_vlan: 71
+storage_mgmt_mtu: 1500
+
+# External_v6 network IP information.
+external_v6_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, external_v6_vlan) }}"
+external_v6_neutron_allocation_pool_start: "{{ external_v6_cidr | ansible.utils.next_nth_usable(150) }}"
+external_v6_neutron_allocation_pool_end: "{{ external_v6_cidr | ansible.utils.next_nth_usable(249) }}"
+external_v6_no_ip: true
+external_v6_vlan: 80
+external_v6_mtu: 1480

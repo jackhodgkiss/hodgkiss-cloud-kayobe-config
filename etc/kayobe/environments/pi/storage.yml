@@ -13,6 +13,7 @@ storage_bootstrap_user: cloud-user
 storage_extra_network_interfaces:
   - external
   - tunnel
+  - external_v6
 
 ###############################################################################
 # Storage node swap configuration.
