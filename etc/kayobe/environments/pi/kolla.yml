@@ -187,6 +187,7 @@ kolla_enable_opensearch: true
 kolla_enable_ovn: true
 kolla_enable_prometheus: true
 kolla_enable_prometheus_alertmanager_external: true
+kolla_enable_prometheus_ceph_mgr_exporter: true
 kolla_enable_redis: true
 kolla_enable_skyline: true
 
