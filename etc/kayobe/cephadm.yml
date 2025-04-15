@@ -9,10 +9,10 @@ cephadm_ceph_release: "squid"
 #cephadm_fsid:
 
 # Ceph container image.
-cephadm_image: quay.io/ceph/ceph:{{ cephadm_image_tag }}"
+cephadm_image: "quay.io/ceph/ceph:{{ cephadm_image_tag }}"
 
 # Ceph container image tag.
-cephadm_image_tag: "v19.2.1"
+cephadm_image_tag: "v19.2.2"
 
 # Use cephadm provided by OS distribution.
 cephadm_custom_repos: true
@@ -21,22 +21,22 @@ cephadm_custom_repos: true
 cephadm_haproxy_image: docker.io/arm64v8/haproxy:alpine3.20
 
 # HAProxy container image tag.
-cephadm_haproxy_image_tag:
+#cephadm_haproxy_image_tag:
 
 # Keepalived container image.
 cephadm_keepalived_image: docker.io/jackhodgkiss/keepalived-aarch64:latest
 
 # Keepalived container image tag.
-cephadm_keepalived_image_tag:
+#cephadm_keepalived_image_tag:
 
 # Ceph container image registry URL.
-cephadm_registry_url:
+#cephadm_registry_url:
 
 # Ceph container image registry username.
-cephadm_registry_username:
+#cephadm_registry_username:
 
 # Ceph container image registry password.
-cephadm_registry_password:
+#cephadm_registry_password:
 
 # Cephadm admin network interface.
 cephadm_admin_interface: "{{ admin_oc_net_name | net_interface }}"
