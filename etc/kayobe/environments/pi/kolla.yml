@@ -175,6 +175,7 @@ kolla_build_customizations:
 # Kolla feature flag configuration.
 
 kolla_enable_central_logging: true
+kolla_enable_ceph_rgw: true
 kolla_enable_cinder: true
 kolla_enable_designate: true
 kolla_enable_glance: true
