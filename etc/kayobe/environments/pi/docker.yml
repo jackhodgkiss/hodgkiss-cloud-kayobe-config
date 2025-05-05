@@ -1,0 +1,14 @@
+---
+###############################################################################
+# Docker configuration.
+
+# URL of docker registry
+docker_registry: ctrl-01.pi.os.infra.hodgkiss.cloud:4000
+
+# Whether docker should be configured to use an insecure registry.
+# Default is false, unless docker_registry_enabled is true and
+# docker_registry_enable_tls is false.
+docker_registry_insecure: true
+
+# Enable live-restore on docker daemon
+docker_daemon_live_restore: true
