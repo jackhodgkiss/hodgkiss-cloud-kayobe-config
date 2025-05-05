@@ -1,0 +1,14 @@
+---
+###############################################################################
+# DNS.
+
+# Whether kayobe should configure resolv.conf.
+resolv_is_managed: true
+
+# List of DNS nameservers.
+resolv_nameservers:
+  - 10.100.0.254
+
+# List of DNS search suffixes.
+resolv_search:
+  - x64.os.infra.hodgkiss.cloud
