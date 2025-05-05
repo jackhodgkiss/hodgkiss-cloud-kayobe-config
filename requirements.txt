@@ -1,0 +1,1 @@
+kayobe@git+https://github.com/openstack/kayobe@stable/2024.1
