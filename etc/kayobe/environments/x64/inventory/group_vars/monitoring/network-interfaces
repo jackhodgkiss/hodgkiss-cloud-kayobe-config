@@ -1,0 +1,15 @@
+---
+###############################################################################
+# Network interface definitions for the monitoring group.
+
+admin_oc_interface: "brenp5s0"
+
+internal_interface: "{{ admin_oc_interface}}.{{ internal_vlan }}"
+
+external_interface: "{{ admin_oc_interface }}.{{ external_vlan }}"
+
+public_interface: "{{ admin_oc_interface }}.{{ public_vlan }}"
+
+tunnel_interface: "{{ admin_oc_interface }}.{{ tunnel_vlan }}"
+
+octavia_interface: "{{ admin_oc_interface }}.{{ octavia_vlan }}"

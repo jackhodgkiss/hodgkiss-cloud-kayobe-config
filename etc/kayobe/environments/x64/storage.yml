@@ -1,0 +1,38 @@
+---
+###############################################################################
+# Storage node configuration.
+
+# User with which to access the storages via SSH during bootstrap, in order
+# to setup the Kayobe user account. Default is {{ os_distribution }}.
+storage_bootstrap_user: cloud-user
+
+###############################################################################
+# Storage network interface configuration.
+
+# List of extra networks to which storage nodes are attached.
+storage_extra_network_interfaces:
+  - external
+  - octavia
+  - tunnel
+
+###############################################################################
+# Storage node LVM configuration.
+
+# Additional list of storage volume groups. See mrlesmithjr.manage_lvm role
+# for format.
+stoage_lvm_groups_extra:
+  - "{{ lvm_group_rootvg }}"
+
+###############################################################################
+# Storage node swap configuration.
+
+storage_swap:
+  - path: /swapfile
+    size_mb: 32768
+
+###############################################################################
+# Storage node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+storage_sysctl_parameters:
+  vm.swappiness: 10

@@ -1,0 +1,101 @@
+---
+lvm_group_rootvg:
+  vgname: rootvg
+  disks: "{{ lvm_group_rootvg_disks }}"
+  create: true
+  lvnames: "{{ lvm_group_rootvg_lvs_default + lvm_group_rootvg_lvs_extra }}"
+
+lvm_group_rootvg_disks:
+  - "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NJ0N303382J_1-part2"
+
+lvm_group_rootvg_lvs_default:
+  - "{{ lvm_lv_root }}"
+  - "{{ lvm_lv_tmp }}"
+  - "{{ lvm_lv_var }}"
+  - "{{ lvm_lv_var_tmp }}"
+  - "{{ lvm_lv_log }}"
+  - "{{ lvm_lv_audit }}"
+  - "{{ lvm_lv_home }}"
+  - "{{ lvm_lv_docker }}"
+
+lvm_group_rootvg_lvs_extra: []
+
+lvm_lv_root_size: 64g
+
+lvm_lv_tmp_size: 32g
+
+lvm_lv_var_size: 64g
+
+lvm_lv_var_tmp_size: 32g
+
+lvm_lv_log_size: 16g
+
+lvm_lv_audit_size: 8g
+
+lvm_lv_home_size: 64g
+
+lvm_lv_docker_size: 768g
+
+lvm_lv_root:
+  lvname: lv_root
+  size: "{{ lvm_lv_root_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /
+
+lvm_lv_tmp:
+  lvname: lv_tmp
+  size: "{{ lvm_lv_tmp_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /tmp
+
+lvm_lv_var:
+  lvname: lv_var
+  size: "{{ lvm_lv_var_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /var
+
+lvm_lv_var_tmp:
+  lvname: lv_var_tmp
+  size: "{{ lvm_lv_var_tmp_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /var/tmp
+
+lvm_lv_log:
+  lvname: lv_log
+  size: "{{ lvm_lv_log_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /var/log
+
+lvm_lv_audit:
+  lvname: lv_audit
+  size: "{{ lvm_lv_audit_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /var/log/audit
+
+lvm_lv_home:
+  lvname: lv_home
+  size: "{{ lvm_lv_home_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /home
+
+lvm_lv_docker:
+  lvname: lv_docker
+  size: "{{ lvm_lv_docker_size }}"
+  create: true
+  filesystem: ext4
+  mount: true
+  mntp: /var/lib/docker

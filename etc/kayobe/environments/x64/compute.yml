@@ -1,0 +1,40 @@
+---
+###############################################################################
+# Compute node configuration.
+
+# User with which to access the computes via SSH during bootstrap, in order
+# to setup the Kayobe user account. Default is {{ os_distribution }}.
+compute_bootstrap_user: cloud-user
+
+###############################################################################
+# Compute network interface configuration.
+
+# List of extra networks to which compute nodes are attached.
+compute_extra_network_interfaces:
+  - octavia
+
+###############################################################################
+# Compute node LVM configuration.
+
+# Additional list of compute volume groups. See mrlesmithjr.manage_lvm role
+# for format.
+compute_lvm_groups_extra:
+  - "{{ lvm_group_rootvg }}"
+
+###############################################################################
+# Compute node swap configuration.
+
+compute_swap:
+  - path: /swapfile
+    size_mb: 32768
+
+###############################################################################
+# Compute node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+compute_sysctl_parameters:
+  vm.swappiness: 10
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
