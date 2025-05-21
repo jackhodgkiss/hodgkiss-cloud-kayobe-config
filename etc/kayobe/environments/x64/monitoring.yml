@@ -1,0 +1,61 @@
+---
+###############################################################################
+# Monitoring node configuration.
+
+# User with which to access the monitoring nodes via SSH during bootstrap, in
+# order to setup the Kayobe user account.
+monitoring_bootstrap_user: cloud-user
+
+###############################################################################
+# Monitoring network interface configuration.
+
+# List of extra networks to which monitoring nodes are attached.
+monitoring_extra_network_interfaces:
+  - octavia
+
+###############################################################################
+# Monitoring node LVM configuration.
+
+# Additional list of monitoring volume groups. See mrlesmithjr.manage_lvm role
+# for format.
+monitoring_lvm_groups_extra:
+  - "{{ lvm_group_rootvg }}"
+
+###############################################################################
+# Monitoring node swap configuration.
+
+monitoring_swap:
+  - path: /swapfile
+    size_mb: 32768
+
+###############################################################################
+# Monitoring node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+monitoring_sysctl_parameters:
+  vm.swappiness: 10
+
+###############################################################################
+# Alert configuration
+
+# Threshold to trigger a LowMemory alert in Gibibytes (GiB). When the amount
+# of free memory is lower than this value an alert will be triggered.
+alertmanager_low_memory_threshold_gib: 1
+
+# Whether to raise an alert if any network bond is configured with a single
+# link. Change to false to disable this alert.
+alertmanager_warn_network_bond_single_link: true
+
+# Threshold to trigger an LowSwapSpace alert on swap space depletion (ratio).
+# When the ratio of free swap space is lower than each of these values, warning
+# and critical alerts will be triggered respectively.
+alertmanager_node_free_swap_warning_threshold_ratio: 0.25
+alertmanager_node_free_swap_critical_threshold_ratio: 0.1
+
+# Threshold to trigger an alert for dropped packets, measured in packets/s
+# averaged over 5 minutes.
+alertmanager_packet_drop_threshold: 25
+
+# Threshold to trigger an alert for packet receive/transmit errors, measured in
+# packets/s averaged over 5 minutes.
+alertmanager_packet_errors_threshold: 25

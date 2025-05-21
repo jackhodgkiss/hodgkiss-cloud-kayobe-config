@@ -1,0 +1,79 @@
+---
+neutron_plugin_agent: "ovn"
+
+openstack_service_workers: "2"
+
+openstack_service_rpc_workers: "2"
+
+neutron_dns_domain: "ntrnl.x64.os.wl.hodgkiss.cloud."
+
+designate_ns_record:
+  - "romulus.ns.hodgkiss.cloud"
+
+cinder_volume_group: rootvg
+
+#############################################################################
+# Monitoring and alerting related settings
+
+prometheus_cmdline_extras: "--storage.tsdb.retention.time=30d"
+
+# Additional command line flags for node exporter to enable texfile collector for disk metrics and create textfile docker volume
+prometheus_node_exporter_extra_volumes:
+  - "textfile:/var/lib/node_exporter/textfile_collector"
+prometheus_node_exporter_cmdline_extras: "--collector.textfile.directory=/var/lib/node_exporter/textfile_collector"
+
+# Expose Prometheus server
+enable_prometheus_server_external: true
+
+# Use inventory hostnames as labels
+prometheus_instance_label: "{% raw %}{{ ansible_facts.hostname }}{% endraw %}"
+
+#############################################################################
+# Expose all external API services on a single port.
+{% raw %}
+haproxy_single_external_frontend: true
+base_external_fqdn: "x64.os.hodgkiss.cloud"
+cinder_external_fqdn: "volumes.{{ base_external_fqdn }}"
+designate_external_fqdn: "names.{{ base_external_fqdn }}"
+glance_external_fqdn: "images.{{ base_external_fqdn }}"
+horizon_external_fqdn: "horizon.{{ base_external_fqdn }}"
+keystone_external_fqdn: "identity.{{ base_external_fqdn }}"
+neutron_external_fqdn: "networks.{{ base_external_fqdn }}"
+nova_external_fqdn: "compute.{{ base_external_fqdn }}"
+nova_novncproxy_fqdn: "remote.{{ base_external_fqdn }}"
+placement_external_fqdn: "placement.{{ base_external_fqdn }}"
+skyline_console_external_fqdn: "skyline.{{ base_external_fqdn }}"
+skyline_apiserver_external_fqdn: "skyline-api.{{ base_external_fqdn }}"
+magnum_external_fqdn: "k8s.{{ base_external_fqdn }}"
+octavia_external_fqdn: "lb.{{ base_external_fqdn }}"
+opensearch_dashboards_external_fqdn: "opensearch.{{ base_external_fqdn }}"
+prometheus_alertmanager_external_fqdn: "alerts.{{ base_external_fqdn }}"
+prometheus_external_fqdn: "prometheus.{{ base_external_fqdn }}"
+grafana_external_fqdn: "grafana.{{ base_external_fqdn }}"
+{% endraw %}
+
+distro_python_version: "3.12"
+
+#############################################################################
+# Octavia settings
+octavia_certs_country: GB
+octavia_certs_state: Warrington
+octavia_certs_organization: "Hodgkiss"
+octavia_certs_organizational_unit: Octavia
+octavia_loadbalancer_topology: "ACTIVE_STANDBY"
+octavia_enable_anti_affinity: True
+octavia_network_interface: brenp5s0.191
+octavia_amp_network:
+  name: lb-mgmt-net
+  provider_network_type: vlan
+  provider_segmentation_id: 91
+  provider_physical_network: physnet1
+  external: false
+  shared: false
+  subnet:
+    name: lb-mgmt-subnet
+    cidr: "10.100.91.0/24"
+    allocation_pool_start: "10.100.91.150"
+    allocation_pool_end: "10.100.91.250"
+    no_gateway_ip: yes
+    enable_dhcp: yes
