@@ -1,0 +1,10 @@
+admin_oc_ips:
+  romulus.x64.os.infra.hodgkiss.cloud: 10.100.0.1
+internal_ips:
+  romulus.x64.os.infra.hodgkiss.cloud: 10.100.30.1
+octavia_ips:
+  romulus.x64.os.infra.hodgkiss.cloud: 10.100.91.1
+public_ips:
+  romulus.x64.os.infra.hodgkiss.cloud: 10.100.50.1
+tunnel_ips:
+  romulus.x64.os.infra.hodgkiss.cloud: 10.100.60.1

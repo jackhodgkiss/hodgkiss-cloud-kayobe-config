@@ -1,0 +1,36 @@
+---
+###############################################################################
+# Controller node configuration.
+
+# User with which to access the controllers via SSH during bootstrap, in order
+# to setup the Kayobe user account. Default is {{ os_distribution }}.
+controller_bootstrap_user: cloud-user
+
+###############################################################################
+# Controller network interface configuration.
+
+# List of extra networks to which controller nodes are attached.
+controller_extra_network_interfaces:
+  - octavia
+
+###############################################################################
+# Controller node LVM configuration.
+
+# Additional list of controller volume groups. See mrlesmithjr.manage_lvm role
+# for format.
+controller_lvm_groups_extra:
+  - "{{ lvm_group_rootvg }}"
+
+###############################################################################
+# Controller node swap configuration.
+
+controller_swap:
+  - path: /swapfile
+    size_mb: 32768
+
+###############################################################################
+# Controller node sysctl configuration.
+
+# Dict of sysctl parameters to set.
+controller_sysctl_parameters:
+  vm.swappiness: 10

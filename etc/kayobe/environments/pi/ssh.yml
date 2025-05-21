@@ -1,0 +1,6 @@
+---
+###############################################################################
+# SSH configuration.
+
+# Type of SSH key. Default is "rsa".
+ssh_key_type: ed25519

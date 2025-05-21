@@ -1,0 +1,83 @@
+---
+# Kayobe network configuration.
+
+###############################################################################
+# Network role to network mappings.
+
+# Name of the network used for admin access to the overcloud
+admin_oc_net_name: admin_oc
+
+# Name of the network used to expose the internal OpenStack API endpoints.
+internal_net_name: internal
+
+# List of names of networks used to provide external network access via
+# Neutron.
+# Deprecated name: external_net_name
+# If external_net_name is defined, external_net_names will default to a list
+# containing one item, external_net_name.
+external_net_names:
+  - external
+
+# Name of the network used to expose the public OpenStack API endpoints.
+public_net_name: public
+
+# Name of the network used by Neutron to carry tenant overlay network traffic.
+tunnel_net_name: tunnel
+
+# Name of the network used to carry storage data traffic.
+storage_net_name: internal
+
+# Name of the network used to carry storage management traffic.
+storage_mgmt_net_name: internal
+
+# Name of the network used to perform healthchecks for Amphora based Octavai load balancers.
+octavia_net_name: octavia
+
+###############################################################################
+# Network definitions.
+
+network_ipv4: 10.100.0.0/16
+
+# Admin network IP information.
+admin_oc_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, 0) }}"
+admin_oc_gateway: "{{ admin_oc_cidr | ansible.utils.next_nth_usable(254) }}"
+admin_oc_bridge_ports:
+  - "enp5s0"
+
+# Internal network IP information.
+internal_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, internal_vlan - 100) }}"
+internal_vip_address: "{{ internal_cidr | ansible.utils.next_nth_usable(253) }}"
+internal_allocation_pool_start: "{{ internal_cidr | ansible.utils.next_nth_usable(1) }}"
+internal_allocation_pool_end: "{{ internal_cidr | ansible.utils.next_nth_usable(149) }}"
+internal_vlan: 130
+internal_mtu: 1500
+
+# External network IP information.
+external_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, external_vlan - 100) }}"
+external_neutron_allocation_pool_start: "{{ external_cidr | ansible.utils.next_nth_usable(150) }}"
+external_neutron_allocation_pool_end: "{{ external_cidr | ansible.utils.next_nth_usable(249) }}"
+external_no_ip: true
+external_vlan: 140
+external_mtu: 1500
+
+# Public network IP information.
+public_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, public_vlan - 100) }}"
+public_vip_address: "{{ public_cidr | ansible.utils.next_nth_usable(253) }}"
+public_allocation_pool_start: "{{ public_cidr | ansible.utils.next_nth_usable(1) }}"
+public_allocation_pool_end: "{{ public_cidr | ansible.utils.next_nth_usable(149) }}"
+public_vlan: 150
+public_mtu: 1500
+
+# Tunnel network IP information.
+tunnel_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, tunnel_vlan - 100) }}"
+tunnel_allocation_pool_start: "{{ tunnel_cidr | ansible.utils.next_nth_usable(1) }}"
+tunnel_allocation_pool_end: "{{ tunnel_cidr | ansible.utils.next_nth_usable(149) }}"
+tunnel_vlan: 160
+tunnel_mtu: 1500
+
+# Octavia network IP information.
+octavia_cidr: "{{ network_ipv4 | ansible.utils.ipsubnet(24, octavia_vlan - 100) }}"
+octavia_allocation_pool_start: "{{ octavia_cidr | ansible.utils.next_nth_usable(1) }}"
+octavia_allocation_pool_end: "{{ octavia_cidr | ansible.utils.next_nth_usable(149) }}"
+octavia_vlan: 191
+octavia_mtu: 1500
