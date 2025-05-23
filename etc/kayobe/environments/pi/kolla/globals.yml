@@ -64,8 +64,6 @@ prometheus_external_fqdn: "prometheus.{{ base_external_fqdn }}"
 grafana_external_fqdn: "grafana.{{ base_external_fqdn }}"
 {% endraw %}
 
-distro_python_version: "3.12"
-
 ceph_rgw_swift_compatibility: false
 ceph_rgw_swift_account_in_url: true
 
@@ -79,3 +77,11 @@ ceph_rgw_hosts:
   - host: cmpt-03.pi.os.infra.hodgkiss.cloud
     ip: 10.0.70.5
     port: 8100
+
+om_enable_queue_manager: true
+om_enable_rabbitmq_quorum_queues: true
+om_enable_rabbitmq_transient_quorum_queue: true
+om_enable_rabbitmq_stream_fanout: true
+
+database_enable_tls_internal: false
+
