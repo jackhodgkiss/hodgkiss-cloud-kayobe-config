@@ -77,3 +77,10 @@ octavia_amp_network:
     allocation_pool_end: "10.100.91.250"
     no_gateway_ip: yes
     enable_dhcp: yes
+
+om_enable_queue_manager: true
+om_enable_rabbitmq_quorum_queues: true
+om_enable_rabbitmq_transient_quorum_queue: true
+om_enable_rabbitmq_stream_fanout: true
+
+database_enable_tls_internal: false
